@@ -1,0 +1,134 @@
+{
+  "project_info": {
+    "project_number": "638722195564",
+    "project_id": "testcase1-b33f8",
+    "storage_bucket": "testcase1-b33f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638722195564:android:c6a04c2c15701f47d59849",
+        "android_client_info": {
+          "package_name": "com.flutterflow.sniffsocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638722195564-5d5ob47n34m5t055l7j83r0vi4fjmgot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfjMR7YAVJM2qNPUNvNoyt2h8_uvYgoDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638722195564-5d5ob47n34m5t055l7j83r0vi4fjmgot.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "638722195564-5td0dkntqmmfj9ju0am0egq4oqq4l8h9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "site.eelnm.adminacademylife"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638722195564:android:c0cf6f6c79d5356dd59849",
+        "android_client_info": {
+          "package_name": "site.eelnm.academylife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638722195564-tmse6433kh9mtn4af9llolt1p1nbosdb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "site.eelnm.academylife",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "638722195564-5d5ob47n34m5t055l7j83r0vi4fjmgot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfjMR7YAVJM2qNPUNvNoyt2h8_uvYgoDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638722195564-5d5ob47n34m5t055l7j83r0vi4fjmgot.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "638722195564-5td0dkntqmmfj9ju0am0egq4oqq4l8h9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "site.eelnm.adminacademylife"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638722195564:android:992cd1b9643e103ad59849",
+        "android_client_info": {
+          "package_name": "site.eelnm.adminacademylife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638722195564-l0mgl5i1ubcpl9ll24k90rcl44be8dm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "site.eelnm.adminacademylife",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "638722195564-5d5ob47n34m5t055l7j83r0vi4fjmgot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfjMR7YAVJM2qNPUNvNoyt2h8_uvYgoDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638722195564-5d5ob47n34m5t055l7j83r0vi4fjmgot.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "638722195564-5td0dkntqmmfj9ju0am0egq4oqq4l8h9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "site.eelnm.adminacademylife"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
