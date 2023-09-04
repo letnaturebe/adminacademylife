@@ -339,12 +339,6 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget>
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: Image.network(
-                                _model.uploadedFileUrl1,
-                              ).image,
-                            ),
                           ),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -406,7 +400,7 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget>
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.network(
-                                'https://picsum.photos/seed/786/600',
+                                _model.uploadedFileUrl1,
                                 width: MediaQuery.sizeOf(context).width * 0.9,
                                 height: 200.0,
                                 fit: BoxFit.cover,
