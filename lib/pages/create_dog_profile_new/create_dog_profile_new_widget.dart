@@ -105,8 +105,8 @@ class _CreateDogProfileNewWidgetState extends State<CreateDogProfileNewWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: Image.asset(
-                        'assets/images/dog_emptyChoosePhoto@2x.png',
+                      image: Image.network(
+                        _model.uploadedFileUrl,
                       ).image,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -130,11 +130,6 @@ class _CreateDogProfileNewWidgetState extends State<CreateDogProfileNewWidget> {
 
                         var downloadUrls = <String>[];
                         try {
-                          showUploadMessage(
-                            context,
-                            'Uploading file...',
-                            showLoading: true,
-                          );
                           selectedUploadedFiles = selectedMedia
                               .map((m) => FFUploadedFile(
                                     name: m.storagePath.split('/').last,
@@ -155,7 +150,6 @@ class _CreateDogProfileNewWidgetState extends State<CreateDogProfileNewWidget> {
                               .map((u) => u!)
                               .toList();
                         } finally {
-                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
                           _model.isDataUploading = false;
                         }
                         if (selectedUploadedFiles.length ==
@@ -166,10 +160,8 @@ class _CreateDogProfileNewWidgetState extends State<CreateDogProfileNewWidget> {
                                 selectedUploadedFiles.first;
                             _model.uploadedFileUrl = downloadUrls.first;
                           });
-                          showUploadMessage(context, 'Success!');
                         } else {
                           setState(() {});
-                          showUploadMessage(context, 'Failed to upload data');
                           return;
                         }
                       }
@@ -177,8 +169,8 @@ class _CreateDogProfileNewWidgetState extends State<CreateDogProfileNewWidget> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        _model.uploadedFileUrl,
-                        width: MediaQuery.sizeOf(context).width * 0.9,
+                        'https://picsum.photos/seed/522/600',
+                        width: 300.0,
                         height: 200.0,
                         fit: BoxFit.cover,
                       ),
@@ -405,6 +397,7 @@ class _CreateDogProfileNewWidgetState extends State<CreateDogProfileNewWidget> {
                               dogName: _model.dogNameController.text,
                               dogType: _model.dogBreedController.text,
                               dogAge: _model.dogAgeController.text,
+                              dogBio: '',
                             ));
                         context.pop();
                       },

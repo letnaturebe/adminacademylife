@@ -2,7 +2,7 @@
 export '/pages/login/login_widget.dart' show LoginWidget;
 export '/pages/create_account/create_account_widget.dart'
     show CreateAccountWidget;
-export '/pages/create_academy_profile/create_academy_profile_widget.dart'
+export '/pages/academy/create_academy_profile/create_academy_profile_widget.dart'
     show CreateAcademyProfileWidget;
 export '/pages/create_your_profile/create_your_profile_widget.dart'
     show CreateYourProfileWidget;
