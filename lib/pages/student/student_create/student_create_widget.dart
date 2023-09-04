@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,63 +10,37 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'student_create_model.dart';
 export 'student_create_model.dart';
 
 class StudentCreateWidget extends StatefulWidget {
-  const StudentCreateWidget({Key? key}) : super(key: key);
+  const StudentCreateWidget({
+    Key? key,
+    this.student,
+  }) : super(key: key);
+
+  final StudentsRecord? student;
 
   @override
   _StudentCreateWidgetState createState() => _StudentCreateWidgetState();
 }
 
-class _StudentCreateWidgetState extends State<StudentCreateWidget>
-    with TickerProviderStateMixin {
+class _StudentCreateWidgetState extends State<StudentCreateWidget> {
   late StudentCreateModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = {
-    'containerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0.0, 110.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-  };
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => StudentCreateModel());
 
-    _model.nameController ??= TextEditingController();
+    _model.nameController ??= TextEditingController(text: widget.student?.name);
     _model.phoneNumberController ??= TextEditingController();
     _model.ageController ??= TextEditingController();
     _model.commentController ??= TextEditingController();
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
   }
 
   @override
@@ -354,7 +327,7 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget>
                               if (selectedMedia != null &&
                                   selectedMedia.every((m) => validateFileFormat(
                                       m.storagePath, context))) {
-                                setState(() => _model.isDataUploading1 = true);
+                                setState(() => _model.isDataUploading = true);
                                 var selectedUploadedFiles = <FFUploadedFile>[];
 
                                 var downloadUrls = <String>[];
@@ -379,17 +352,16 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget>
                                       .map((u) => u!)
                                       .toList();
                                 } finally {
-                                  _model.isDataUploading1 = false;
+                                  _model.isDataUploading = false;
                                 }
                                 if (selectedUploadedFiles.length ==
                                         selectedMedia.length &&
                                     downloadUrls.length ==
                                         selectedMedia.length) {
                                   setState(() {
-                                    _model.uploadedLocalFile1 =
+                                    _model.uploadedLocalFile =
                                         selectedUploadedFiles.first;
-                                    _model.uploadedFileUrl1 =
-                                        downloadUrls.first;
+                                    _model.uploadedFileUrl = downloadUrls.first;
                                   });
                                 } else {
                                   setState(() {});
@@ -400,7 +372,7 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget>
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.network(
-                                _model.uploadedFileUrl1,
+                                _model.uploadedFileUrl,
                                 width: MediaQuery.sizeOf(context).width * 0.9,
                                 height: 200.0,
                                 fit: BoxFit.cover,
@@ -410,82 +382,6 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget>
                         ),
                       ].divide(SizedBox(height: 12.0)),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        final selectedMedia =
-                            await selectMediaWithSourceBottomSheet(
-                          context: context,
-                          allowPhoto: true,
-                        );
-                        if (selectedMedia != null &&
-                            selectedMedia.every((m) =>
-                                validateFileFormat(m.storagePath, context))) {
-                          setState(() => _model.isDataUploading2 = true);
-                          var selectedUploadedFiles = <FFUploadedFile>[];
-
-                          var downloadUrls = <String>[];
-                          try {
-                            selectedUploadedFiles = selectedMedia
-                                .map((m) => FFUploadedFile(
-                                      name: m.storagePath.split('/').last,
-                                      bytes: m.bytes,
-                                      height: m.dimensions?.height,
-                                      width: m.dimensions?.width,
-                                      blurHash: m.blurHash,
-                                    ))
-                                .toList();
-
-                            downloadUrls = (await Future.wait(
-                              selectedMedia.map(
-                                (m) async =>
-                                    await uploadData(m.storagePath, m.bytes),
-                              ),
-                            ))
-                                .where((u) => u != null)
-                                .map((u) => u!)
-                                .toList();
-                          } finally {
-                            _model.isDataUploading2 = false;
-                          }
-                          if (selectedUploadedFiles.length ==
-                                  selectedMedia.length &&
-                              downloadUrls.length == selectedMedia.length) {
-                            setState(() {
-                              _model.uploadedLocalFile2 =
-                                  selectedUploadedFiles.first;
-                              _model.uploadedFileUrl2 = downloadUrls.first;
-                            });
-                          } else {
-                            setState(() {});
-                            return;
-                          }
-                        }
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        constraints: BoxConstraints(
-                          maxWidth: 500.0,
-                        ),
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border: Border.all(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                        ),
-                      ),
-                    ).animateOnPageLoad(
-                        animationsMap['containerOnPageLoadAnimation']!),
                   ),
                   Padding(
                     padding:

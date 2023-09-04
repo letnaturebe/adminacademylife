@@ -165,7 +165,12 @@ final parametersBuilderMap =
       ),
   'createGroupChat': ParameterData.none(),
   'homePage': ParameterData.none(),
-  'studentCreate': ParameterData.none(),
+  'studentCreate': (data) async => ParameterData(
+        allParams: {
+          'student': await getDocumentParameter<StudentsRecord>(
+              data, 'student', StudentsRecord.fromSnapshot),
+        },
+      ),
   'studentList': ParameterData.none(),
 };
 
