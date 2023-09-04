@@ -56,11 +56,6 @@ class StudentsRecord extends FirestoreRecord {
   String get status => _status ?? '';
   bool hasStatus() => _status != null;
 
-  // "photo_url" field.
-  String? _photoUrl;
-  String get photoUrl => _photoUrl ?? '';
-  bool hasPhotoUrl() => _photoUrl != null;
-
   // "academy" field.
   DocumentReference? _academy;
   DocumentReference? get academy => _academy;
@@ -75,7 +70,6 @@ class StudentsRecord extends FirestoreRecord {
     _comment = snapshotData['comment'] as String?;
     _phoneNumber = castToType<int>(snapshotData['phone_number']);
     _status = snapshotData['status'] as String?;
-    _photoUrl = snapshotData['photo_url'] as String?;
     _academy = snapshotData['academy'] as DocumentReference?;
   }
 
@@ -121,7 +115,6 @@ Map<String, dynamic> createStudentsRecordData({
   String? comment,
   int? phoneNumber,
   String? status,
-  String? photoUrl,
   DocumentReference? academy,
 }) {
   final firestoreData = mapToFirestore(
@@ -133,7 +126,6 @@ Map<String, dynamic> createStudentsRecordData({
       'comment': comment,
       'phone_number': phoneNumber,
       'status': status,
-      'photo_url': photoUrl,
       'academy': academy,
     }.withoutNulls,
   );
@@ -155,7 +147,6 @@ class StudentsRecordDocumentEquality implements Equality<StudentsRecord> {
         e1?.comment == e2?.comment &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.status == e2?.status &&
-        e1?.photoUrl == e2?.photoUrl &&
         e1?.academy == e2?.academy;
   }
 
@@ -169,7 +160,6 @@ class StudentsRecordDocumentEquality implements Equality<StudentsRecord> {
         e?.comment,
         e?.phoneNumber,
         e?.status,
-        e?.photoUrl,
         e?.academy
       ]);
 

@@ -227,12 +227,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'studentCreate',
           path: '/studentCreate',
-          asyncParams: {
-            'student': getDoc(['students'], StudentsRecord.fromSnapshot),
-          },
-          builder: (context, params) => StudentCreateWidget(
-            student: params.getParam('student', ParamType.Document),
-          ),
+          builder: (context, params) => StudentCreateWidget(),
         ),
         FFRoute(
           name: 'studentList',

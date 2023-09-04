@@ -32,5 +32,7 @@ export '/pages/add_chat_users/add_chat_users_widget.dart'
 export '/pages/create_group_chat/create_group_chat_widget.dart'
     show CreateGroupChatWidget;
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
-export '/student_create/student_create_widget.dart' show StudentCreateWidget;
-export '/student_list/student_list_widget.dart' show StudentListWidget;
+export '/pages/student/student_create/student_create_widget.dart'
+    show StudentCreateWidget;
+export '/pages/student/student_list/student_list_widget.dart'
+    show StudentListWidget;

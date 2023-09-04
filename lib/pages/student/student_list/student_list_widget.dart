@@ -899,8 +899,7 @@ class _StudentListWidgetState extends State<StudentListWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
-                                                  listViewStudentsRecord
-                                                      .imageUrl,
+                                                  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=900&q=60',
                                                   width: 120.0,
                                                   height: 120.0,
                                                   fit: BoxFit.cover,
@@ -922,7 +921,7 @@ class _StudentListWidgetState extends State<StudentListWidget> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    listViewStudentsRecord.name,
+                                                    'Randy Rodriguez',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyLarge,
@@ -933,9 +932,7 @@ class _StudentListWidgetState extends State<StudentListWidget> {
                                                             .fromSTEB(0.0, 0.0,
                                                                 12.0, 0.0),
                                                     child: Text(
-                                                      listViewStudentsRecord
-                                                          .phoneNumber
-                                                          .toString(),
+                                                      'randy@domainname.com',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -993,14 +990,12 @@ class _StudentListWidgetState extends State<StudentListWidget> {
                                             flex: 2,
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
                                               children: [
                                                 Container(
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .accent3,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8.0),
@@ -1024,8 +1019,7 @@ class _StudentListWidgetState extends State<StudentListWidget> {
                                                                   8.0,
                                                                   4.0),
                                                       child: Text(
-                                                        listViewStudentsRecord
-                                                            .status,
+                                                        'Viewer',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
