@@ -105,7 +105,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Text(
-                              '24k',
+                              '강인태권도',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
@@ -117,7 +117,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             ),
                           ),
                           Text(
-                            'Followers',
+                            '학원명',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
@@ -210,17 +210,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       ),
                     ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                child: Text(
-                  '학원명',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily: 'Urbanist',
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
                 ),
               ),
               Expanded(

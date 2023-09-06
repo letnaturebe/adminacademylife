@@ -51,30 +51,31 @@ class _PostCreateWidgetState extends State<PostCreateWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
-        title: Text(
-          'Create Post',
-          style: FlutterFlowTheme.of(context).headlineMedium,
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-            child: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30.0,
-              buttonSize: 48.0,
-              icon: Icon(
-                Icons.close_rounded,
-                color: Color(0xFF95A1AC),
-                size: 30.0,
-              ),
-              onPressed: () async {
-                context.pop();
-              },
-            ),
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 60.0,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.white,
+            size: 30.0,
           ),
-        ],
+          onPressed: () async {
+            context.pop();
+          },
+        ),
+        title: Text(
+          '학생 생활',
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
+                fontFamily: 'Urbanist',
+                color: Colors.white,
+                fontSize: 22.0,
+              ),
+        ),
+        actions: [],
         centerTitle: false,
-        elevation: 0.0,
+        elevation: 2.0,
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
