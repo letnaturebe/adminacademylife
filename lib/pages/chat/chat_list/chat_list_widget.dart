@@ -1,30 +1,31 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/chat/index.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'all_chats_page_model.dart';
-export 'all_chats_page_model.dart';
+import 'chat_list_model.dart';
+export 'chat_list_model.dart';
 
-class AllChatsPageWidget extends StatefulWidget {
-  const AllChatsPageWidget({Key? key}) : super(key: key);
+class ChatListWidget extends StatefulWidget {
+  const ChatListWidget({Key? key}) : super(key: key);
 
   @override
-  _AllChatsPageWidgetState createState() => _AllChatsPageWidgetState();
+  _ChatListWidgetState createState() => _ChatListWidgetState();
 }
 
-class _AllChatsPageWidgetState extends State<AllChatsPageWidget> {
-  late AllChatsPageModel _model;
+class _ChatListWidgetState extends State<ChatListWidget> {
+  late ChatListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AllChatsPageModel());
+    _model = createModel(context, () => ChatListModel());
   }
 
   @override
@@ -54,13 +55,27 @@ class _AllChatsPageWidgetState extends State<AllChatsPageWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 60.0,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: Colors.white,
+            size: 30.0,
+          ),
+          onPressed: () async {
+            context.pop();
+          },
+        ),
         title: Text(
-          'Messages',
+          '학부모상담',
           style: FlutterFlowTheme.of(context).headlineMedium,
         ),
         actions: [],
         centerTitle: false,
-        elevation: 0.0,
+        elevation: 2.0,
       ),
       body: SafeArea(
         top: true,

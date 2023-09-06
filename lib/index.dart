@@ -29,8 +29,7 @@ export '/pages/auth/view_profile_page_other/view_profile_page_other_widget.dart'
 export '/pages/create_dog_profile_new/create_dog_profile_new_widget.dart'
     show CreateDogProfileNewWidget;
 export '/pages/chat/chat_page/chat_page_widget.dart' show ChatPageWidget;
-export '/pages/chat/all_chats_page/all_chats_page_widget.dart'
-    show AllChatsPageWidget;
+export '/pages/chat/chat_list/chat_list_widget.dart' show ChatListWidget;
 export '/pages/chat/add_chat_users/add_chat_users_widget.dart'
     show AddChatUsersWidget;
 export '/pages/create_group_chat/create_group_chat_widget.dart'

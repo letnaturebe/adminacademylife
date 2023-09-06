@@ -152,7 +152,7 @@ final parametersBuilderMap =
           'chatRef': getParameter<DocumentReference>(data, 'chatRef'),
         },
       ),
-  'allChatsPage': ParameterData.none(),
+  'chatList': ParameterData.none(),
   'addChatUsers': (data) async => ParameterData(
         allParams: {
           'chat': await getDocumentParameter<ChatsRecord>(

@@ -200,9 +200,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'allChatsPage',
-          path: '/allChatsPage',
-          builder: (context, params) => AllChatsPageWidget(),
+          name: 'chatList',
+          path: '/chatList',
+          builder: (context, params) => ChatListWidget(),
         ),
         FFRoute(
           name: 'addChatUsers',
