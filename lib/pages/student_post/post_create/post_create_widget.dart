@@ -3,38 +3,35 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_media_display.dart';
-import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:io';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'create_post_model.dart';
-export 'create_post_model.dart';
+import 'post_create_model.dart';
+export 'post_create_model.dart';
 
-class CreatePostWidget extends StatefulWidget {
-  const CreatePostWidget({Key? key}) : super(key: key);
+class PostCreateWidget extends StatefulWidget {
+  const PostCreateWidget({Key? key}) : super(key: key);
 
   @override
-  _CreatePostWidgetState createState() => _CreatePostWidgetState();
+  _PostCreateWidgetState createState() => _PostCreateWidgetState();
 }
 
-class _CreatePostWidgetState extends State<CreatePostWidget> {
-  late CreatePostModel _model;
+class _PostCreateWidgetState extends State<PostCreateWidget> {
+  late PostCreateModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CreatePostModel());
+    _model = createModel(context, () => PostCreateModel());
 
     _model.textController ??= TextEditingController();
   }
@@ -213,6 +210,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(0.0),
+                                            shape: BoxShape.rectangle,
                                           ),
                                         ),
                                       ),
@@ -316,38 +314,6 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      FlutterFlowPlacePicker(
-                        iOSGoogleMapsApiKey: '',
-                        androidGoogleMapsApiKey: '',
-                        webGoogleMapsApiKey: '',
-                        onSelect: (place) async {
-                          setState(() => _model.placePickerValue = place);
-                        },
-                        defaultText: 'Location',
-                        icon: Icon(
-                          Icons.place,
-                          color: FlutterFlowTheme.of(context).grayIcon,
-                          size: 24.0,
-                        ),
-                        buttonOptions: FFButtonOptions(
-                          width: 300.0,
-                          height: 60.0,
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          textStyle: FlutterFlowTheme.of(context).titleSmall,
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],

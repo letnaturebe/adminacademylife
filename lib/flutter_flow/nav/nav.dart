@@ -123,9 +123,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CreateStoryWidget(),
         ),
         FFRoute(
-          name: 'createPost',
-          path: '/createPost',
-          builder: (context, params) => CreatePostWidget(),
+          name: 'postCreate',
+          path: '/postCreate',
+          builder: (context, params) => PostCreateWidget(),
         ),
         FFRoute(
           name: 'postDetails',
@@ -140,9 +140,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'storyDetails',
-          path: '/storyDetails',
-          builder: (context, params) => StoryDetailsWidget(
+          name: 'postStory',
+          path: '/postStory',
+          builder: (context, params) => PostStoryWidget(
             initialStoryIndex:
                 params.getParam('initialStoryIndex', ParamType.int),
           ),
@@ -225,13 +225,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
-          name: 'studentCreate',
-          path: '/studentCreate',
-          requireAuth: true,
+          name: 'studentDetail',
+          path: '/studentDetail',
           asyncParams: {
             'student': getDoc(['students'], StudentsRecord.fromSnapshot),
           },
-          builder: (context, params) => StudentCreateWidget(
+          builder: (context, params) => StudentDetailWidget(
             student: params.getParam('student', ParamType.Document),
           ),
         ),
@@ -239,6 +238,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'studentList',
           path: '/studentList',
           builder: (context, params) => StudentListWidget(),
+        ),
+        FFRoute(
+          name: 'noticeList',
+          path: '/noticeList',
+          builder: (context, params) => NoticeListWidget(),
+        ),
+        FFRoute(
+          name: 'noticeDetail',
+          path: '/noticeDetail',
+          requireAuth: true,
+          asyncParams: {
+            'notice': getDoc(['notices'], NoticesRecord.fromSnapshot),
+          },
+          builder: (context, params) => NoticeDetailWidget(
+            notice: params.getParam('notice', ParamType.Document),
+          ),
+        ),
+        FFRoute(
+          name: 'postList',
+          path: '/postList',
+          builder: (context, params) => PostListWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -421,13 +441,9 @@ class FFRoute {
           final child = appStateNotifier.loading
               ? Container(
                   color: Colors.transparent,
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/Sniff_0.0_Splash@2x.png',
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: MediaQuery.sizeOf(context).height * 1.0,
-                      fit: BoxFit.cover,
-                    ),
+                  child: Image.asset(
+                    'assets/images/images.jpeg',
+                    fit: BoxFit.cover,
                   ),
                 )
               : PushNotificationsHandler(child: page);

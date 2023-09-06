@@ -1,22 +1,18 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'student_create_model.dart';
-export 'student_create_model.dart';
+import 'student_detail_model.dart';
+export 'student_detail_model.dart';
 
-class StudentCreateWidget extends StatefulWidget {
-  const StudentCreateWidget({
+class StudentDetailWidget extends StatefulWidget {
+  const StudentDetailWidget({
     Key? key,
     this.student,
   }) : super(key: key);
@@ -24,23 +20,24 @@ class StudentCreateWidget extends StatefulWidget {
   final StudentsRecord? student;
 
   @override
-  _StudentCreateWidgetState createState() => _StudentCreateWidgetState();
+  _StudentDetailWidgetState createState() => _StudentDetailWidgetState();
 }
 
-class _StudentCreateWidgetState extends State<StudentCreateWidget> {
-  late StudentCreateModel _model;
+class _StudentDetailWidgetState extends State<StudentDetailWidget> {
+  late StudentDetailModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => StudentCreateModel());
+    _model = createModel(context, () => StudentDetailModel());
 
     _model.nameController ??= TextEditingController(text: widget.student?.name);
-    _model.phoneNumberController ??= TextEditingController();
-    _model.ageController ??= TextEditingController();
-    _model.commentController ??= TextEditingController();
+    _model.phoneNumberController ??=
+        TextEditingController(text: widget.student?.phoneNumber?.toString());
+    _model.commentController ??=
+        TextEditingController(text: widget.student?.comment);
   }
 
   @override
@@ -97,31 +94,6 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            FlutterFlowRadioButton(
-                              options: ['남자', '여자'].toList(),
-                              onChanged: (val) => setState(() {}),
-                              controller: _model.genderValueController ??=
-                                  FormFieldController<String>('남자'),
-                              optionHeight: 32.0,
-                              textStyle:
-                                  FlutterFlowTheme.of(context).labelMedium,
-                              selectedTextStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium,
-                              buttonPosition: RadioButtonPosition.left,
-                              direction: Axis.horizontal,
-                              radioButtonColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              inactiveRadioButtonColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              toggleable: false,
-                              horizontalAlignment: WrapAlignment.start,
-                              verticalAlignment: WrapCrossAlignment.start,
-                            ),
-                          ],
-                        ),
                         TextFormField(
                           controller: _model.nameController,
                           autofocus: true,
@@ -214,56 +186,11 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget> {
                               .asValidator(context),
                         ),
                         TextFormField(
-                          controller: _model.ageController,
-                          autofocus: true,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: '나이',
-                            labelStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 12.0, 16.0, 12.0),
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          keyboardType: TextInputType.number,
-                          cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.ageControllerValidator
-                              .asValidator(context),
-                        ),
-                        TextFormField(
                           controller: _model.commentController,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
+                            labelText: '정보',
                             labelStyle:
                                 FlutterFlowTheme.of(context).labelMedium,
                             hintText: '학생정보',
@@ -306,80 +233,6 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget> {
                           validator: _model.commentControllerValidator
                               .asValidator(context),
                         ),
-                        Container(
-                          width: double.infinity,
-                          height: 200.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              final selectedMedia =
-                                  await selectMediaWithSourceBottomSheet(
-                                context: context,
-                                allowPhoto: true,
-                              );
-                              if (selectedMedia != null &&
-                                  selectedMedia.every((m) => validateFileFormat(
-                                      m.storagePath, context))) {
-                                setState(() => _model.isDataUploading = true);
-                                var selectedUploadedFiles = <FFUploadedFile>[];
-
-                                var downloadUrls = <String>[];
-                                try {
-                                  selectedUploadedFiles = selectedMedia
-                                      .map((m) => FFUploadedFile(
-                                            name: m.storagePath.split('/').last,
-                                            bytes: m.bytes,
-                                            height: m.dimensions?.height,
-                                            width: m.dimensions?.width,
-                                            blurHash: m.blurHash,
-                                          ))
-                                      .toList();
-
-                                  downloadUrls = (await Future.wait(
-                                    selectedMedia.map(
-                                      (m) async => await uploadData(
-                                          m.storagePath, m.bytes),
-                                    ),
-                                  ))
-                                      .where((u) => u != null)
-                                      .map((u) => u!)
-                                      .toList();
-                                } finally {
-                                  _model.isDataUploading = false;
-                                }
-                                if (selectedUploadedFiles.length ==
-                                        selectedMedia.length &&
-                                    downloadUrls.length ==
-                                        selectedMedia.length) {
-                                  setState(() {
-                                    _model.uploadedLocalFile =
-                                        selectedUploadedFiles.first;
-                                    _model.uploadedFileUrl = downloadUrls.first;
-                                  });
-                                } else {
-                                  setState(() {});
-                                  return;
-                                }
-                              }
-                            },
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                _model.uploadedFileUrl,
-                                width: MediaQuery.sizeOf(context).width * 0.9,
-                                height: 200.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
                       ].divide(SizedBox(height: 12.0)),
                     ),
                   ),
@@ -392,10 +245,32 @@ class _StudentCreateWidgetState extends State<StudentCreateWidget> {
                             .doc()
                             .set(createStudentsRecordData(
                               name: _model.nameController.text,
-                              gender: _model.genderValue,
-                              age: int.tryParse(_model.ageController.text),
                               comment: _model.commentController.text,
+                              phoneNumber: int.tryParse(
+                                  _model.phoneNumberController.text),
                             ));
+                        GoRouter.of(context).prepareAuthEvent();
+                        if (_model.commentController.text !=
+                            _model.commentController.text) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Passwords don\'t match!',
+                              ),
+                            ),
+                          );
+                          return;
+                        }
+
+                        final user = await authManager.createAccountWithEmail(
+                          context,
+                          _model.phoneNumberController.text,
+                          _model.commentController.text,
+                        );
+                        if (user == null) {
+                          return;
+                        }
+
                         context.safePop();
                       },
                       text: '저장',

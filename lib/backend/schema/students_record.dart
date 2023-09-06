@@ -21,26 +21,6 @@ class StudentsRecord extends FirestoreRecord {
   String get name => _name ?? '';
   bool hasName() => _name != null;
 
-  // "gender" field.
-  String? _gender;
-  String get gender => _gender ?? '';
-  bool hasGender() => _gender != null;
-
-  // "age" field.
-  int? _age;
-  int get age => _age ?? 0;
-  bool hasAge() => _age != null;
-
-  // "imageUrl" field.
-  String? _imageUrl;
-  String get imageUrl => _imageUrl ?? '';
-  bool hasImageUrl() => _imageUrl != null;
-
-  // "subjects" field.
-  List<String>? _subjects;
-  List<String> get subjects => _subjects ?? const [];
-  bool hasSubjects() => _subjects != null;
-
   // "comment" field.
   String? _comment;
   String get comment => _comment ?? '';
@@ -63,10 +43,6 @@ class StudentsRecord extends FirestoreRecord {
 
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
-    _gender = snapshotData['gender'] as String?;
-    _age = castToType<int>(snapshotData['age']);
-    _imageUrl = snapshotData['imageUrl'] as String?;
-    _subjects = getDataList(snapshotData['subjects']);
     _comment = snapshotData['comment'] as String?;
     _phoneNumber = castToType<int>(snapshotData['phone_number']);
     _status = snapshotData['status'] as String?;
@@ -109,9 +85,6 @@ class StudentsRecord extends FirestoreRecord {
 
 Map<String, dynamic> createStudentsRecordData({
   String? name,
-  String? gender,
-  int? age,
-  String? imageUrl,
   String? comment,
   int? phoneNumber,
   String? status,
@@ -120,9 +93,6 @@ Map<String, dynamic> createStudentsRecordData({
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'name': name,
-      'gender': gender,
-      'age': age,
-      'imageUrl': imageUrl,
       'comment': comment,
       'phone_number': phoneNumber,
       'status': status,
@@ -138,12 +108,7 @@ class StudentsRecordDocumentEquality implements Equality<StudentsRecord> {
 
   @override
   bool equals(StudentsRecord? e1, StudentsRecord? e2) {
-    const listEquality = ListEquality();
     return e1?.name == e2?.name &&
-        e1?.gender == e2?.gender &&
-        e1?.age == e2?.age &&
-        e1?.imageUrl == e2?.imageUrl &&
-        listEquality.equals(e1?.subjects, e2?.subjects) &&
         e1?.comment == e2?.comment &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.status == e2?.status &&
@@ -151,17 +116,8 @@ class StudentsRecordDocumentEquality implements Equality<StudentsRecord> {
   }
 
   @override
-  int hash(StudentsRecord? e) => const ListEquality().hash([
-        e?.name,
-        e?.gender,
-        e?.age,
-        e?.imageUrl,
-        e?.subjects,
-        e?.comment,
-        e?.phoneNumber,
-        e?.status,
-        e?.academy
-      ]);
+  int hash(StudentsRecord? e) => const ListEquality()
+      .hash([e?.name, e?.comment, e?.phoneNumber, e?.status, e?.academy]);
 
   @override
   bool isValidKey(Object? o) => o is StudentsRecord;

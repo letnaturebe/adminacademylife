@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'story_details_model.dart';
-export 'story_details_model.dart';
+import 'post_story_model.dart';
+export 'post_story_model.dart';
 
-class StoryDetailsWidget extends StatefulWidget {
-  const StoryDetailsWidget({
+class PostStoryWidget extends StatefulWidget {
+  const PostStoryWidget({
     Key? key,
     this.initialStoryIndex,
   }) : super(key: key);
@@ -22,18 +22,18 @@ class StoryDetailsWidget extends StatefulWidget {
   final int? initialStoryIndex;
 
   @override
-  _StoryDetailsWidgetState createState() => _StoryDetailsWidgetState();
+  _PostStoryWidgetState createState() => _PostStoryWidgetState();
 }
 
-class _StoryDetailsWidgetState extends State<StoryDetailsWidget> {
-  late StoryDetailsModel _model;
+class _PostStoryWidgetState extends State<PostStoryWidget> {
+  late PostStoryModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => StoryDetailsModel());
+    _model = createModel(context, () => PostStoryModel());
   }
 
   @override

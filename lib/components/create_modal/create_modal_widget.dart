@@ -190,7 +190,7 @@ class _CreateModalWidgetState extends State<CreateModalWidget> {
             highlightColor: Colors.transparent,
             onTap: () async {
               context.pushNamed(
-                'createPost',
+                'postCreate',
                 extra: <String, dynamic>{
                   kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,

@@ -79,13 +79,9 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   Widget build(BuildContext context) => _loading
       ? Container(
           color: Colors.transparent,
-          child: Center(
-            child: Image.asset(
-              'assets/images/Sniff_0.0_Splash@2x.png',
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: MediaQuery.sizeOf(context).height * 1.0,
-              fit: BoxFit.cover,
-            ),
+          child: Image.asset(
+            'assets/images/images.jpeg',
+            fit: BoxFit.cover,
           ),
         )
       : widget.child;
@@ -119,7 +115,7 @@ final parametersBuilderMap =
   'forgotPassword': ParameterData.none(),
   'profilePage': ParameterData.none(),
   'createStory': ParameterData.none(),
-  'createPost': ParameterData.none(),
+  'postCreate': ParameterData.none(),
   'postDetails': (data) async => ParameterData(
         allParams: {
           'postReference':
@@ -128,7 +124,7 @@ final parametersBuilderMap =
               data, 'userRecord', UsersRecord.fromSnapshot),
         },
       ),
-  'storyDetails': (data) async => ParameterData(
+  'postStory': (data) async => ParameterData(
         allParams: {
           'initialStoryIndex': getParameter<int>(data, 'initialStoryIndex'),
         },
@@ -165,13 +161,21 @@ final parametersBuilderMap =
       ),
   'createGroupChat': ParameterData.none(),
   'homePage': ParameterData.none(),
-  'studentCreate': (data) async => ParameterData(
+  'studentDetail': (data) async => ParameterData(
         allParams: {
           'student': await getDocumentParameter<StudentsRecord>(
               data, 'student', StudentsRecord.fromSnapshot),
         },
       ),
   'studentList': ParameterData.none(),
+  'noticeList': ParameterData.none(),
+  'noticeDetail': (data) async => ParameterData(
+        allParams: {
+          'notice': await getDocumentParameter<NoticesRecord>(
+              data, 'notice', NoticesRecord.fromSnapshot),
+        },
+      ),
+  'postList': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {
